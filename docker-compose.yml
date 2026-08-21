@@ -7,6 +7,7 @@ services:
       OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
       OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen3:8b}
       RAG_ENGINE: ${RAG_ENGINE:-auto}
+      RUNBOOKS_PATH: /app/runbooks
     volumes:
-      - ./runbooks:/app/runbooks:ro
+      - ${RUNBOOKS_PATH_HOST:-./runbooks}:/app/runbooks:ro
     restart: unless-stopped

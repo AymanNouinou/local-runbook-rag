@@ -60,6 +60,17 @@ Ouvrir [http://localhost:8000](http://localhost:8000). L’API OpenAPI est dispo
 
 En l’absence d’Ollama, le mode `auto` utilise automatiquement la réponse extractive.
 
+### Stockage sur disque externe
+
+Pour conserver projets, documents et modèles sur un volume externe, remplacez `EXTERNAL_DRIVE` par le nom de votre volume :
+
+```dotenv
+RUNBOOKS_PATH=/Volumes/EXTERNAL_DRIVE/AI/documents/runbooks
+RUNBOOKS_PATH_HOST=/Volumes/EXTERNAL_DRIVE/AI/documents/runbooks
+```
+
+Le premier chemin est utilisé par l’application lancée nativement. Le second est monté en lecture seule dans le conteneur Docker. Le disque doit être monté avant de démarrer l’application.
+
 ### Docker
 
 Ollama reste installé nativement sur le Mac pour profiter de Metal. Seule l’application est conteneurisée et son port est lié à `127.0.0.1`.
@@ -120,6 +131,7 @@ Bonnes pratiques :
 | `OLLAMA_MODEL` | `qwen3:8b` | Modèle de synthèse |
 | `RAG_ENGINE` | `auto` | `auto`, `ollama` ou `extractive` |
 | `RUNBOOKS_PATH` | `runbooks` | Répertoire documentaire |
+| `RUNBOOKS_PATH_HOST` | `./runbooks` | Répertoire hôte monté par Docker |
 | `MAX_QUESTION_LENGTH` | `2000` | Taille maximale prévue |
 
 ## Tests
