@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen3:8b}
+      RAG_ENGINE: ${RAG_ENGINE:-auto}
+    volumes:
+      - ./runbooks:/app/runbooks:ro
+    restart: unless-stopped

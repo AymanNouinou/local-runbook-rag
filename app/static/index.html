@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local Runbook RAG</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <span class="eyebrow">LOCAL · PRIVATE · READ-ONLY</span>
+      <h1>Interrogez vos runbooks.<br><em>Gardez le contrôle.</em></h1>
+      <p>Un assistant SRE local qui retrouve les procédures utiles, cite ses sources et ne lance aucune commande.</p>
+    </header>
+    <section class="panel">
+      <form id="query-form">
+        <label for="question">Décrivez l’incident</label>
+        <textarea id="question" required minlength="3" placeholder="Ex. Mon pod Kubernetes redémarre avec CrashLoopBackOff. Que vérifier ?"></textarea>
+        <div class="controls">
+          <select id="engine" aria-label="Moteur">
+            <option value="auto">Auto (Ollama puis secours)</option>
+            <option value="extractive">Recherche seule</option>
+            <option value="ollama">Ollama obligatoire</option>
+          </select>
+          <button type="submit">Analyser <span>→</span></button>
+        </div>
+      </form>
+    </section>
+    <section id="result" class="result hidden" aria-live="polite"></section>
+    <footer><span id="status">Chargement des runbooks…</span><span>Les commandes proposées ne sont jamais exécutées.</span></footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
